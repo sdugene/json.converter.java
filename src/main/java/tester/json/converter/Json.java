@@ -1,4 +1,4 @@
-package com.json.converter;
+package tester.json.converter;
 
 import java.util.ArrayList;
 import java.util.List;
