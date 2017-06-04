@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.github.siteoffice</groupId>
-    <artifactId>api.access.java</artifactId>
+    <artifactId>json.converter.java</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
