@@ -1,4 +1,4 @@
-package com.json.converter;
+package com.json.tester;
 
 public class Application
 {
