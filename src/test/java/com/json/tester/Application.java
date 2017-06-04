@@ -1,6 +1,8 @@
 package com.json.tester;
 
 import com.json.converter.Json;
+
+import java.util.HashMap;
 import java.util.List;
 
 public class Application
@@ -20,6 +22,10 @@ public class Application
 
         String json2 = Json.jsonEncode(test2);
         System.out.println(json2);
+
+
+        String api = "{\"mails\":[{\"id\":28,\"fromAddress\":\"inscription@siteoffice.fr\",\"fromName\":\"SITEOFFICE - Inscription\",\"recipient\":\"test@siteoffice.fr\",\"subject\":\"SiteOffice | Validation de compte\",\"body\":\"<html></html>\",\"attachment\":null,\"errorCount\":null,\"errorMessage\":null,\"date\":\"2015-04-12 16:28:54.0\",\"className\":\"Mail\"}],\"templateName\":\"mails\",\"jsScript\":false,\"icon\":\"fa-file\",\"title\":\"Gestion des messages\"}";
+        System.out.println("api: "+ Json.jsonDecode(api, new HashMap<String, Object>()));
 
     }
 }

@@ -29,8 +29,8 @@ public class Json
 
             return list;
         } else {
-            Map<String, String> map = new Gson().fromJson(
-                    json, new TypeToken<HashMap<String,String>>() {}.getType()
+            Map<String, Object> map = new Gson().fromJson(
+                    json, new TypeToken<HashMap<String,Object>>() {}.getType()
             );
 
             try {
