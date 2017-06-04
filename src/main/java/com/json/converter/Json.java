@@ -4,12 +4,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rits.cloning.Cloner;
 import org.json.simple.JSONObject;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import static org.apache.commons.beanutils.BeanUtils.populate;
 
 public class Json
@@ -44,5 +41,10 @@ public class Json
 
             return object;
         }
+    }
+
+    public static String jsonEncode(Object object)
+    {
+        return new Gson().toJson(object);
     }
 }

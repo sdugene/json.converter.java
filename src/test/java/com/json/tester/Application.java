@@ -14,5 +14,12 @@ public class Application
         System.out.println(test2.get(1).getTest());
         System.out.println(test2.get(0).getTest());
         System.out.println("test1: "+test1.getTest());
+
+        String json1 = Json.jsonEncode(test1);
+        System.out.println(json1);
+
+        String json2 = Json.jsonEncode(test2);
+        System.out.println(json2);
+
     }
 }
