@@ -43,6 +43,11 @@ public class Json
         }
     }
 
+    public static Object jsonDecode(String json)
+    {
+        return Json.jsonDecode(json, new HashMap<String, Object>());
+    }
+
     public static String jsonEncode(Object object)
     {
         return new Gson().toJson(object);
