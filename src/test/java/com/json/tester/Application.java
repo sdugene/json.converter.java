@@ -6,8 +6,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Created by Sebastien Dugene on 04/06/2017.
+ */
 public class Application
 {
+    /**
+     * Run json.converter tests
+     *
+     * @param args default args
+     */
     public static void main(String [] args)
     {
         Entity test1 = (Entity) Json.jsonDecode("{\"test\": \"ok simple\"}", new Entity());

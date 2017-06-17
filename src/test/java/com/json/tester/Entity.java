@@ -1,7 +1,7 @@
 package com.json.tester;
 
 /**
- * Created by sebastiendugene on 04/06/2017.
+ * Created by Sebastien Dugene on 04/06/2017.
  */
 public class Entity
 {

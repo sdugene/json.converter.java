@@ -9,8 +9,17 @@ import java.util.List;
 import java.util.Map;
 import static org.apache.commons.beanutils.BeanUtils.populate;
 
+/**
+ * Created by Sebastien Dugene on 04/06/2017.
+ */
 public class Json
 {
+    /**
+     * Convert Json String into defined Object
+     *
+     * @param json text to convert
+     * @param object object to hydrate
+     */
     public static Object jsonDecode(String json, Object object)
     {
         List<Object> list;
@@ -43,11 +52,21 @@ public class Json
         }
     }
 
+    /**
+     * Convert Json String into Map
+     *
+     * @param json text to convert
+     */
     public static Object jsonDecode(String json)
     {
         return Json.jsonDecode(json, new HashMap<String, Object>());
     }
 
+    /**
+     * Convert object into Json String
+     *
+     * @param object object to convert
+     */
     public static String jsonEncode(Object object)
     {
         return new Gson().toJson(object);
