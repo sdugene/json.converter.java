@@ -5,11 +5,12 @@ Convert Json string into object
 #Requirements
 
 * Java 1.8
+* java commons-beanutils compatibility
 
 #Example
 ```
 * jsonDecode :
-String json = "{\"sample\": \"smaple text\"}";
+String json = "{\"sample\": \"sample text\"}";
 Entity entity = jsonDecode(json, new Entity());
 
 
