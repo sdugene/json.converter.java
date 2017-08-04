@@ -3,7 +3,11 @@ package com.json.converter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rits.cloning.Cloner;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +26,10 @@ public class Json
      */
     public static Object jsonDecode(String json, Object object)
     {
+        if(object instanceof JSONObject) {
+            return toJSONObject(json);
+        }
+
         List<Object> list;
         Cloner cloner=new Cloner();
 
@@ -45,11 +53,33 @@ public class Json
             try {
                 populate(object, map);
             } catch (Exception e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
 
             return object;
         }
+    }
+
+    /**
+     * Convert Json String into JSONObject
+     *
+     * @param json text to convert
+     */
+    private static JSONObject toJSONObject(String json)
+    {
+        JSONParser parser = new JSONParser();
+        try {
+            Object obj = parser.parse(json);
+            if (obj instanceof JSONArray) {
+                return null;
+            } else {
+                return (JSONObject) obj;
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /**
