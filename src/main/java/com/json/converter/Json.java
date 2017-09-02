@@ -59,32 +59,13 @@ public class Json
     }
 
     /**
-     * Convert Json String into JSONObject
-     *
-     * @param json text to convert
-     */
-    private static JsonObject toJSONObject(String json) throws ParseException
-    {
-        return (JsonObject) fromJson(json, JsonObject.class);
-
-
-        /*JSONParser parser = new JSONParser();
-        Object obj = parser.parse(json);
-        if (obj instanceof JSONArray) {
-            return null;
-        } else {
-            return (JSONObject) obj;
-        }*/
-    }
-
-    /**
      * Convert Json String into Map
      *
      * @param json text to convert
      */
-    public static Object jsonDecode(String json) throws Exception
+    public static Object jsonDecode(String json)
     {
-        return Json.jsonDecode(json, new HashMap<String, Object>());
+        return Json.jsonDecode(json, HashMap.class);
     }
 
     /**
@@ -93,7 +74,7 @@ public class Json
      * @param json text to convert
      * @param className class to hydrate
      */
-    public static Object fromJson(String json, Class className)
+    public static Object jsonDecode(String json, Class className)
     {
         return new Gson().fromJson(json, className);
     }
@@ -109,12 +90,12 @@ public class Json
     }
 
     /**
-     * Convert Json String into specific class
+     * Convert Json String into JSONObject
      *
-     * @param object Object to convert
+     * @param json text to convert
      */
-    public static String toJson(Object object)
+    private static JsonObject toJSONObject(String json)
     {
-        return new Gson().toJson(object);
+        return (JsonObject) jsonDecode(json, JsonObject.class);
     }
 }

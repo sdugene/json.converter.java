@@ -3,6 +3,8 @@ package com.json.converter;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -36,5 +38,21 @@ public class JsonTest
         assertEquals(json, jsonObject.toString());
         jsonObject.put("testEntry", "cool");
         assertEquals("{\"test\":\"ok simple\",\"testEntry\":\"cool\"}", jsonObject.toString());
+
+        Object map = Json.jsonDecode(json);
+        if (!(map instanceof HashMap)) {
+            assert(false);
+        }
+        assertEquals("ok simple", ((Map) map).get("test"));
+    }
+
+    @Test
+    public void jsonEncodeTest()
+    {
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.put("test", "ok simple");
+
+        String jsonTest = Json.jsonEncode(jsonObject);
+        assertEquals(json, jsonTest);
     }
 }
