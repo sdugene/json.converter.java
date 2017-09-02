@@ -34,17 +34,7 @@ node
         stage('Package')
         {
             sh "mvn clean package"
-        }
-
-        stage('Artifact')
-        {
-            step([$class: 'ArtifactArchiver', artifacts: '**/target/*.jar', fingerprint: true])
-        }
-
-        stage ('Publish')
-        {
-            sh "mvn clean deploy"
-            slackSend channel: '#siteoffice-dev', color: 'good', message: "success ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)", teamDomain: 'weprogramit', token: 'moRvDpXIeqK2VLiZTF6MBjgM'
+            slackSend channel: '#siteoffice-dev', color: 'good', message: "success ${env.JOB_NAME} ${env.BUILD_NUMBER}", teamDomain: 'weprogramit', token: 'moRvDpXIeqK2VLiZTF6MBjgM'
         }
     }
     catch(e)

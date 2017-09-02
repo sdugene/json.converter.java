@@ -15,15 +15,19 @@ import static org.apache.commons.beanutils.BeanUtils.populate;
 
 public class Json
 {
+    private Json() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      * Convert Json String into defined Object
      *
      * @param json text to convert
      * @param object object to hydrate
      */
-    public static Object jsonDecode(String json, Object object) throws IllegalAccessException, InvocationTargetException
+    public static Object jsonDecode(String json, Object object) throws Exception
     {
-        if(object instanceof JSONObject) {
+        if(object instanceof JsonObject) {
             return toJSONObject(json);
         }
 
@@ -33,7 +37,7 @@ public class Json
         String pattern = "^\\[.*\\]$";
         if (json.matches(pattern)) {
             list = new Gson().fromJson(
-                    json, new TypeToken<List<JSONObject>>() {}.getType()
+                    json, new TypeToken<List<JsonObject>>() {}.getType()
             );
 
             for (Object line: list) {
@@ -58,21 +62,15 @@ public class Json
      *
      * @param json text to convert
      */
-    private static JSONObject toJSONObject(String json)
+    private static JsonObject toJSONObject(String json) throws Exception
     {
         JSONParser parser = new JSONParser();
-        try {
-            Object obj = parser.parse(json);
-            if (obj instanceof JSONArray) {
-                return null;
-            } else {
-                return (JSONObject) obj;
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+        Object obj = parser.parse(json);
+        if (obj instanceof JsonArray) {
+            return null;
+        } else {
+            return (JsonObject) obj;
         }
-
-        return null;
     }
 
     /**
@@ -80,7 +78,7 @@ public class Json
      *
      * @param json text to convert
      */
-    public static Object jsonDecode(String json) throws IllegalAccessException, InvocationTargetException
+    public static Object jsonDecode(String json) throws Exception
     {
         return Json.jsonDecode(json, new HashMap<String, Object>());
     }
