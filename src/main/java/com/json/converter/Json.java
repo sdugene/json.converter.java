@@ -3,8 +3,6 @@ package com.json.converter;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rits.cloning.Cloner;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;
 import org.json.simple.parser.JSONParser;
