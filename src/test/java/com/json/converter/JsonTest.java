@@ -3,7 +3,9 @@ package com.json.converter;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -29,11 +31,7 @@ public class JsonTest
     public void jsonDecodeTest()
     {
         JsonObject jsonObject = new JsonObject();
-        try {
-            jsonObject = (JsonObject) Json.jsonDecode(json, jsonObject);
-        } catch (Exception e) {
-            assert(false);
-        }
+        jsonObject = (JsonObject) Json.jsonDecode(json, jsonObject);
 
         assertEquals(json, jsonObject.toString());
         jsonObject.put("testEntry", "cool");
@@ -44,6 +42,21 @@ public class JsonTest
             assert(false);
         }
         assertEquals("ok simple", ((Map) map).get("test"));
+
+        Object map2 = Json.jsonDecode(json, new HashMap<String, String>());
+        if (!(map2 instanceof HashMap)) {
+            assert(false);
+        }
+        assertEquals("ok simple", ((Map) map2).get("test"));
+
+        Object list = Json.jsonDecode("["+json+"]", new HashMap<String, String>());
+        if (!(list instanceof ArrayList)) {
+            assert(false);
+        }
+        if (!(((List)list).get(0) instanceof HashMap)) {
+            assert(false);
+        }
+        assertEquals("ok simple", ((Map) ((List)list).get(0)).get("test"));
     }
 
     @Test

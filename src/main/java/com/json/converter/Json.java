@@ -4,11 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rits.cloning.Cloner;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +21,7 @@ public class Json
      * @param json text to convert
      * @param object object to hydrate
      */
-    public static Object jsonDecode(String json, Object object) throws Exception
+    public static Object jsonDecode(String json, Object object)
     {
         if(object instanceof JsonObject) {
             return toJSONObject(json);
@@ -48,13 +43,8 @@ public class Json
 
             return list;
         } else {
-            Map<String, Object> map = new Gson().fromJson(
-                    json, new TypeToken<HashMap<String,Object>>() {}.getType()
-            );
-
-            populate(object, map);
-
-            return object;
+            Class className = object.getClass();
+            return jsonDecode(json, className);
         }
     }
 
