@@ -4,7 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rits.cloning.Cloner;
 
-import java.lang.reflect.InvocationTargetException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -62,15 +63,18 @@ public class Json
      *
      * @param json text to convert
      */
-    private static JsonObject toJSONObject(String json) throws Exception
+    private static JsonObject toJSONObject(String json) throws ParseException
     {
-        JSONParser parser = new JSONParser();
+        return (JsonObject) fromJson(json, JsonObject.class);
+
+
+        /*JSONParser parser = new JSONParser();
         Object obj = parser.parse(json);
-        if (obj instanceof JsonArray) {
+        if (obj instanceof JSONArray) {
             return null;
         } else {
-            return (JsonObject) obj;
-        }
+            return (JSONObject) obj;
+        }*/
     }
 
     /**
