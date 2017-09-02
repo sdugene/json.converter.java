@@ -107,4 +107,14 @@ public class Json
     {
         return new Gson().toJson(object);
     }
+
+    /**
+     * Convert Json String into specific class
+     *
+     * @param object Object to convert
+     */
+    public static String toJson(Object object)
+    {
+        return new Gson().toJson(object);
+    }
 }
