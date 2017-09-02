@@ -1,3 +1,16 @@
 package com.json.converter;
 
-public class JSONObject extends org.json.simple.JSONObject {}
+import java.util.Map;
+
+public class JSONObject extends org.json.simple.JSONObject
+{
+    public JSONObject ()
+    {
+        super();
+    }
+
+    public JSONObject (Map<String, String> map)
+    {
+        super(map);
+    }
+}
