@@ -4,14 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.rits.cloning.Cloner;
 import org.json.simple.JSONObject;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import static org.apache.commons.beanutils.BeanUtils.populate;
 
-/**
- * Created by Sebastien Dugene on 04/06/2017.
- */
 public class Json
 {
     /**
@@ -20,7 +19,7 @@ public class Json
      * @param json text to convert
      * @param object object to hydrate
      */
-    public static Object jsonDecode(String json, Object object)
+    public static Object jsonDecode(String json, Object object) throws IllegalAccessException, InvocationTargetException
     {
         List<Object> list;
         Cloner cloner=new Cloner();
@@ -42,11 +41,7 @@ public class Json
                     json, new TypeToken<HashMap<String,Object>>() {}.getType()
             );
 
-            try {
-                populate(object, map);
-            } catch (Exception e) {
-                System.out.println(e);
-            }
+            populate(object, map);
 
             return object;
         }
@@ -57,9 +52,20 @@ public class Json
      *
      * @param json text to convert
      */
-    public static Object jsonDecode(String json)
+    public static Object jsonDecode(String json) throws IllegalAccessException, InvocationTargetException
     {
         return Json.jsonDecode(json, new HashMap<String, Object>());
+    }
+
+    /**
+     * Convert Json String into specific class
+     *
+     * @param json text to convert
+     * @param className class to hydrate
+     */
+    public static Object fromJson(String json, Class className)
+    {
+        return new Gson().fromJson(json, className);
     }
 
     /**
